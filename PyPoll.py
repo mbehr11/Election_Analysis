@@ -7,14 +7,44 @@ file_to_load = os.path.join("Resources","election_results.csv")
 #Assign a variable to save the file to a path.
 file_to_save = os.path.join("analysis", "election_analysis.txt")
 
-#Open the election results and read the file
+#. Initalize a total vote counter.
+total_votes = 0
+
+#Candidate Options and Candidate votes.
+candidate_options = []
+
+#1. Declare the empty dictionary
+candidate_votes = {}
+
+    #Open the election results and read the file
 with open(file_to_load) as election_data:
-    #To do read and analyze the data. 
-    #Read the file object with the reader function.
-    file_reader = csv.reader(election_data)
-    #Read and print the header row.
+    file_reader = csv.reader(election_data) 
+  
+        #Read the header row.
     headers = next(file_reader)
-    print(headers)
+
+         #Print each row in the CSV file
+    for row in file_reader: 
+        #2. Add the to the total vote count.
+        total_votes= total_votes + 1
+
+    #Print the candidate name from each row.
+        candidate_name = row[2]
+
+#If the candidate does not match any existing candidate.
+if candidate_name not in candidate_options:
+    #Add the candidate name to the candidate list.
+    candidate_options.append(candidate_name)
+#2. Begin tracking that candidate's vote count.
+candidate_votes[candidate_name] = 0
+
+
+
+    #Print the candiate vote in dictionary 
+print(candidate_votes)
+       #3. Print the total votes.
+       # print(total_votes)
+       
 
 #with open(file_to_save, "w") as txt_file:
 #Write three counties to the file
